@@ -1,13 +1,10 @@
 "use client";
 
 import {
-  AppstoreOutlined,
   BarChartOutlined,
   CloudOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  ShopOutlined,
-  TeamOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined
@@ -37,14 +34,11 @@ const menuItems: {
   label: string;
   path: string;
 }[] = [
-  { key: "1", icon: <UserOutlined />, label: "User", path: "/user" },
-  { key: "2", icon: <VideoCameraOutlined />, label: "Video", path: "/video" },
-  { key: "3", icon: <UploadOutlined />, label: "Upload", path: "/upload" },
-  { key: "4", icon: <BarChartOutlined />, label: "Charts", path: "/charts" },
-  { key: "5", icon: <CloudOutlined />, label: "Cloud", path: "/cloud" },
-  { key: "6", icon: <AppstoreOutlined />, label: "Apps", path: "/apps" },
-  { key: "7", icon: <TeamOutlined />, label: "Team", path: "/team" },
-  { key: "8", icon: <ShopOutlined />, label: "Shop", path: "/shop" },
+  { key: "1", icon: <UserOutlined />, label: "ارضيات", path: "/user" },
+  { key: "2", icon: <VideoCameraOutlined />, label: "حوائط", path: "/video" },
+  { key: "3", icon: <UploadOutlined />, label: "جلد", path: "/upload" },
+  { key: "4", icon: <BarChartOutlined />, label: "شمواه", path: "/charts" },
+  { key: "5", icon: <CloudOutlined />, label: "اس بي سي", path: "/cloud" },
 ];
 
 const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -120,11 +114,11 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </Button>
         </Header>
 
-        <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+        <Content style={{ overflow: "initial" }}>
           <div
             className="mt-10"
             style={{
-              padding: 24,
+              
               textAlign: "center",
               borderRadius: borderRadiusLG,
             }}
