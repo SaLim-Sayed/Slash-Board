@@ -1,17 +1,19 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   const apiKey = "114586812666373"; // Replace with your Cloudinary API key
   const apiSecret = "Kvh5HeGQBkW2X7WouJTyMLzMmZ8"; // Replace with your Cloudinary API secret
   const baseUrl = `https://api.cloudinary.com/v1_1/depx9sqyy/resources/image`;
   const auth = Buffer.from(`${apiKey}:${apiSecret}`).toString("base64");
 
-  let allResources: any[] = [];
+  let allResources: string[] = [];
   let nextCursor: string | null = null;
 
   try {
     do {
-      const url: string = nextCursor ? `${baseUrl}?next_cursor=${nextCursor}` : baseUrl;
+      const url: string = nextCursor
+        ? `${baseUrl}?next_cursor=${nextCursor}`
+        : baseUrl;
 
       const response = await fetch(url, {
         headers: {
@@ -33,8 +35,12 @@ export async function GET(req: NextRequest) {
     } while (nextCursor);
 
     return NextResponse.json(allResources);
-  } catch (error: any) {
-    console.error("Error fetching Cloudinary resources:", error.message);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error) {
+    // Check if the error is an instance of Error and has a `message` property
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    // Handle cases where the error is not an Error object
+    return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
   }
 }

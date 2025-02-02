@@ -1,24 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   AppstoreOutlined,
   BarChartOutlined,
   CloudOutlined,
-  HeatMapOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ShopOutlined,
   TeamOutlined,
   UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
+  VideoCameraOutlined
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Layout, Menu, theme } from "antd";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { BiWorld } from "react-icons/bi";
-import { fetchImages } from "../utils/api";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -56,13 +54,7 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
-  useEffect(() => {
-    fetchImages().then((data) => {
-      console.log(data);
-      setImages(data);
-    });
-  }, [router]);
+  
   const handleMenuClick: MenuProps["onClick"] = (e) => {
     const selectedItem = menuItems.find((item) => item.key === e.key);
     if (selectedItem) {
