@@ -17,11 +17,11 @@ export default function Home() {
   return (
     <div className="">
       <Hero />
-      <div className="grid overflow-hidden pt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  p-2 gap-4">
+      <div className="grid overflow-hidden pt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4  p-2 gap-4">
         {images.map((image, index) => (
           <div
             key={index}
-            className=" w-full sm:w-[400px] h-[300px] overflow-hidden p-2 rounded-lg shadow-md"
+            className=" w-full sm:w-[370px] h-[300px] overflow-hidden p-2 rounded-lg shadow-md"
           >
             <Image
                width={"100%"}

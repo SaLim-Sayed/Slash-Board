@@ -7,17 +7,17 @@ import {
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined
+  VideoCameraOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Button, Layout, Menu, theme } from "antd";
+import { Button, Drawer, Layout, Menu, theme } from "antd";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BiWorld } from "react-icons/bi";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const siderStyle: React.CSSProperties = {
+const sliderStyle: React.CSSProperties = {
   overflow: "auto",
   height: "100vh",
   position: "sticky",
@@ -45,10 +45,19 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
 
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
-  
+
   const handleMenuClick: MenuProps["onClick"] = (e) => {
     const selectedItem = menuItems.find((item) => item.key === e.key);
     if (selectedItem) {
@@ -58,9 +67,14 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <Layout hasSider>
-      <Sider style={siderStyle} collapsed={collapsed}>
-        <div className="logo  text-2xl font-[950] bg-white h-16 flex items-center justify-center">
-          <div className="logo z-50 text-transparent bg-gradient-to-r from-blue-600 to-cyan-600   bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
+      {/* Sidebar for larger screens */}
+      {/* <Sider
+        className="hidden sm:block"
+        style={sliderStyle}
+        collapsed={collapsed}
+      >
+        <div className="logo text-2xl font-[950] bg-white h-16 flex items-center justify-center">
+          <div className="logo z-50 text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
             Slash Board
           </div>
         </div>
@@ -75,23 +89,28 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             label,
           }))}
         />
-      </Sider>
+      </Sider> */}
+
+      {/* Main layout */}
       <Layout>
         <Header
           className="flex z-50 justify-between fixed top-0 left-0 right-0 pr-7"
           style={{ padding: 0, background: colorBgContainer }}
         >
-          <div className="logo  text-2xl font-[950] bg-white h-16 flex items-center justify-center">
+          <div className="logo text-2xl font-[950] bg-white h-16 flex items-center justify-center">
             <Button
               type="text"
               icon={
                 collapsed ? (
-                  <MenuUnfoldOutlined className=" text-2xl   bg-gradient-to-r from-blue-600   bg-clip-text" />
+                  <MenuUnfoldOutlined className="text-2xl bg-gradient-to-r from-blue-600 bg-clip-text" />
                 ) : (
                   <MenuFoldOutlined />
                 )
               }
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={() => {
+                setCollapsed(!collapsed);
+                showDrawer(); // Show drawer on small screens
+              }}
               variant="dashed"
               style={{
                 fontSize: "16px",
@@ -99,15 +118,14 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 height: 64,
               }}
             />
-            <div className="logo text-transparent bg-gradient-to-r from-blue-600 to-cyan-600   bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
+            <div className="logo text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
               Slash Board
             </div>
           </div>
           <Button
             id="lang"
             variant="outlined"
-            className="mx-2 flex items-center mt-4 max-w-24 p-2 text-[#488102]  border-[#488102] "
-            // onClick={switchLang}
+            className="mx-2 flex items-center mt-4 max-w-24 p-2 text-[#488102] border-[#488102]"
           >
             <BiWorld />
             lang
@@ -118,7 +136,6 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <div
             className="mt-10"
             style={{
-              
               textAlign: "center",
               borderRadius: borderRadiusLG,
             }}
@@ -133,6 +150,31 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           Ant Design ©{new Date().getFullYear()} Created by Ant UED
         </Footer>
       </Layout>
+
+      <Drawer
+        title={
+          <div className="logo text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
+            Slash Board
+          </div>
+        }
+        onClose={onClose}
+        open={open}
+        placement="left"
+        width={250}
+        style={sliderStyle}
+      >
+        <Menu
+          theme="light"
+          mode="inline"
+          defaultSelectedKeys={["4"]}
+          onClick={handleMenuClick}
+          items={menuItems.map(({ key, icon, label }) => ({
+            key,
+            icon,
+            label,
+          }))}
+        />
+      </Drawer>
     </Layout>
   );
 };
