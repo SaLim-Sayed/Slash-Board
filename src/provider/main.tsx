@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BiWorld } from "react-icons/bi";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
 const sliderStyle: React.CSSProperties = {
   overflow: "auto",
