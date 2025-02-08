@@ -15,7 +15,7 @@ export const Cats = [
   { id: 11, title: "BodyCare", img: "/cats/11.jpg" },
 ];
 const Slider: React.FC = () => (
-  <Carousel arrows autoplaySpeed={800} autoplay>
+  <Carousel arrows draggable autoplaySpeed={1000} autoplay>
     {Cats.map((cat) => (
       <div className="w-full h-full relative" key={cat.id}>
         <Image
