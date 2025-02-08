@@ -4,6 +4,7 @@ import { Image } from "antd";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Hero from "../Hero/Hero";
+import Banner from "../Banner/Banner";
 
 export default function Home() {
   const router = useRouter();
@@ -17,11 +18,11 @@ export default function Home() {
   return (
     <div className="">
       <Hero />
-      <div className="grid overflow-hidden pt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4  p-2 gap-4">
+      <div className="grid overflow-hidden pt-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5  p-2 gap-4">
         {images.map((image, index) => (
           <div
             key={index}
-            className=" w-full sm:w-[370px] h-[300px] overflow-hidden p-2 rounded-lg shadow-md"
+            className=" w-full  h-[300px] overflow-hidden p-2 rounded-lg shadow-md"
           >
             <Image
                width={"100%"}
@@ -32,6 +33,7 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <Banner/>
     </div>
   );
 }

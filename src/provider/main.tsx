@@ -13,8 +13,6 @@ import type { MenuProps } from "antd";
 import { Button, Drawer, Layout, Menu, theme } from "antd";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { BiWorld } from "react-icons/bi";
-
 const { Header, Content, Footer } = Layout;
 
 const sliderStyle: React.CSSProperties = {
@@ -34,11 +32,11 @@ const menuItems: {
   label: string;
   path: string;
 }[] = [
-  { key: "1", icon: <UserOutlined />, label: "ارضيات", path: "/user" },
-  { key: "2", icon: <VideoCameraOutlined />, label: "حوائط", path: "/video" },
-  { key: "3", icon: <UploadOutlined />, label: "جلد", path: "/upload" },
-  { key: "4", icon: <BarChartOutlined />, label: "شمواه", path: "/charts" },
-  { key: "5", icon: <CloudOutlined />, label: "اس بي سي", path: "/cloud" },
+  { key: "1", icon: <UserOutlined />, label: "Floors", path: "/Floors" },
+  { key: "2", icon: <VideoCameraOutlined />, label: "Walls", path: "/Walls" },
+  { key: "3", icon: <UploadOutlined />, label: "Leather", path: "/Leather" },
+  { key: "4", icon: <BarChartOutlined />, label: "Suede", path: "/Suede" },
+  { key: "5", icon: <CloudOutlined />, label: "SPC", path: "/spc" },
 ];
 
 const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -67,30 +65,6 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <Layout hasSider>
-      {/* Sidebar for larger screens */}
-      {/* <Sider
-        className="hidden sm:block"
-        style={sliderStyle}
-        collapsed={collapsed}
-      >
-        <div className="logo text-2xl font-[950] bg-white h-16 flex items-center justify-center">
-          <div className="logo z-50 text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
-            Slash Board
-          </div>
-        </div>
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["4"]}
-          onClick={handleMenuClick}
-          items={menuItems.map(({ key, icon, label }) => ({
-            key,
-            icon,
-            label,
-          }))}
-        />
-      </Sider> */}
-
       {/* Main layout */}
       <Layout>
         <Header
@@ -118,18 +92,18 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 height: 64,
               }}
             />
-            <div className="logo text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
+            <div className="logo text-transparent bg-gradient-to-r from-[#BCB094] to-[#5A5446] bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
               Slash Board
             </div>
-          </div>
-          <Button
-            id="lang"
-            variant="outlined"
-            className="mx-2 flex items-center mt-4 max-w-24 p-2 text-[#488102] border-[#488102]"
-          >
-            <BiWorld />
-            lang
-          </Button>
+          </div>∏
+
+          {/* <Image
+              src={logo}
+              width={100}
+              height={24}
+              alt="lang"
+            />
+        */}
         </Header>
 
         <Content style={{ overflow: "initial" }}>
@@ -153,7 +127,7 @@ const MainNav: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
       <Drawer
         title={
-          <div className="logo text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
+          <div className="logo text-transparent bg-gradient-to-r from-[#BCB094] to-[#5A5446] bg-clip-text text-2xl font-[950] bg-white h-16 flex items-center justify-center">
             Slash Board
           </div>
         }
