@@ -23,7 +23,7 @@ const Slider: React.FC = () => (
           src={cat.img}
           alt={cat.title}
           width={"100%"}
-          height={1000}
+          height={800}
         />
         <div className="absolute w-[60%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-center   text-2xl  font-bold      z-50 bg-white opacity-80">
           <p className="   text-transparent bg-gradient-to-r from-[#7b725d] to-[#5A5446] bg-clip-text">
